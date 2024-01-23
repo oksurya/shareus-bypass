@@ -1388,12 +1388,13 @@ html{
 </div>
 
 <input hidden type="text" id="sidInput" name="sidInput" placeholder="Enter Shortcode" required class="hidden">
-<div class="flex items-center justify-center mt-16">
 
-<div class="" id="destinationResult"></div>
+<div class="flex items-center justify-center mt-16">
 <div class="" id="urloutput"></div>
+<div class="" id="destinationResult"></div>
 
 </div>
+<div class="" id="urliframe"></div>
 
 
 <footer class="mt-16 footer footer-center p-4 bg-base-300 text-base-content">
@@ -1406,10 +1407,68 @@ html{
 </footer>
 <script>
 
-eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('(3(a,b){0 c=5,7=a();14(!![]){k{0 d=1(c(15))/s*(1(c(16))/17)+1(c(18))/19+-1(c(1a))/1b*(1(c(1c))/1d)+1(c(1e))/1f*(-1(c(1g))/1h)+-1(c(1i))/1j+-1(c(1k))/1l+1(c(1m))/1n;1o(d===b)1p;1q 7[\'t\'](7[\'u\']())}l(1r){7[\'t\'](7[\'u\']())}}}(8,1s));3 5(d,e){0 f=8();9 5=3(a,b){a=a-m;0 c=f[a];9 c},5(d,e)}w 3 x(){0 a=5,y=6[a(n)](\'z\')[a(o)];k{A B=g C(a(1t)+y),h=g B[a(m)]();0 b=a(1u);1v(0 c 1w h[a(D)]){b+=a(1x)+c+\':\'+\'</i><i\\j=\\E-2\\F-4\\p>\'+h[a(D)][c]+a(1y)}b+=a(1z);0 d=6[a(1A)](\'a\');d[a(1B)]=h[\'G\'][a(1C)],d[\'1D\'][\'1E\'](a(1F)),d[a(1G)]=a(1H),d[a(1I)]=a(1J),6[a(n)](a(H))[\'I\']=\'\',6[\'q\'](a(H))[\'1K\'](d)}l(J){K[\'L\'](a(1L),J)}}w 3 1M(){0 a=5,M=6[a(n)](a(1N))[a(o)];k{A N=g C(\'O://P.Q.R/v?1O=\'+S(M)+\'&1P=1Q&1R=\'),T=g N[a(m)]();6[\'q\'](a(1S))[a(o)]=T[\'U\'],x()}l(V){K[\'L\'](\'W\\X\\1T\\Y\\Z\\10:\',V)}}3 8(){0 a=[\'1U\',\'1V\',\'1W\',\'1X\',\'q\',\'1Y\',\'1Z\',\'</i></11>\',\'O://P.Q.R/20?U=\',\'z\',\'21\',\'22\',\'23\',\'24\',\'</12>\',\'25\',\'26\\13\',\'27\',\'<12\\j=\\28\\29-2a\\2b>\',\'2c\',\'2d\',\'G\',\'<11\\j=\\2e-2f\\2g-b\\p><i\\j=\\E-2\\F-4\\p>\',\'2h\',\'2i\',\'2j\',\'2k\',\'W\\X\\13\\2l\\Y\\Z\\10:\',\'2m\',\'2n\',\'I\',\'2o\',\'2p\'];8=3(){9 a};9 8()}3 S(a){0 b=5,r=a[b(2q)](\'/\');9 r[r[b(2r)]-s]}',62,152,'var|parseInt||function||_0x48d0|document|_0x2a1f7e|_0x4b2f|return|||||||await|_0x3aefa3|td|x20class|try|catch|0x97|0x99|0xb4|x27|getElementById|_0x416dba|0x1|push|shift||async|displayDestination|_0x2734e7|sidInput|const|_0x22b7e4|fetch|0xaa|x27py|x20px|link_info|0xaf|innerHTML|_0x35913e|console|error|_0x27fffc|_0x343561|https|api|shrslink|xyz|extractShortcode|_0x1dad3c|sid|_0x14765b|Error|x20fetching|x20from|x20the|x20API|tr|table|x20link|while|0xa4|0xb2|0x2|0xb6|0x3|0xad|0x4|0x9a|0x5|0x98|0x6|0xa2|0x7|0xa0|0x8|0xae|0x9|0xa9|0xa|if|break|else|_0x5976df|0xd06d4|0x9d|0xa7|for|in|0xab|0x9c|0xa3|0xa8|0xa6|0x9b|classList|add|0xac|0xb1|0xb5|0xb3|0xa5|appendChild|0xb0|displayShortcode|0xa1|shortid|initial|true|referrer|0x9e|x20data|2374062iZFDiX|split|json|974460pcQgTJ|6585UxJBWG|destination|get_link|length|1548256vOjTPH|urlInput|49iqrzJi|3VtGmIX|Open|href|x22textarea|x20textarea|bordered|x22|createElement|8594540CGjKgS|x27bg|white|x20border|btn|20tPKXdb|9657738NStBus|destinationResult|x20information|target|1075318BvujxM|value|_blank|0xb7|0x9f'.split('|'),0,{}))
+async function displayDestination() {
+    // Get the sid (shortcode) from the input field
+    var sid = document.getElementById("sidInput").value;
+
+    // Make an API call to get information about the link
+    try {
+        const response = await fetch(`https://api.shrslink.xyz/get_link?sid=${sid}`);
+        const data = await response.json();
+
+        // Display link_info in a table format
+               var iframe = document.createElement("iframe");
+        iframe.src = data.link_info.destination;
+        iframe.style.width = "100%";
+        iframe.style.height = "400px"; // Set the desired height
+
+        var urloutput = document.createElement("span");
+        document.getElementById("urloutput").innerHTML = "";
+        document.getElementById("urloutput").appendChild(urloutput);
+        document.getElementById("urliframe").appendChild(iframe);
+
+        // Display the destination URL as a button
+        var destinationButton = document.createElement("a");
+        destinationButton.href = data.link_info.destination;
+        destinationButton.classList.add("btn");
+        destinationButton.target = "_blank";
+        destinationButton.innerHTML = "Open link";
+
+        document.getElementById("destinationResult").innerHTML = "";
+        document.getElementById("destinationResult").appendChild(destinationButton);
+    } catch (error) {
+        console.error("Error fetching link information from the API:", error);
+    }
+}
+
+async function displayShortcode() {
+    // Get the URL input value
+    var urlInputValue = document.getElementById("urlInput").value;
+
+    // Make an API call to get the shortcode
+    try {
+        const response = await fetch(`https://api.shrslink.xyz/v?shortid=${extractShortcode(urlInputValue)}&initial=true&referrer=`);
+        const data = await response.json();
+
+        // Display the shortcode (sid) from the API response
+
+        // Set the value of sidInput
+        document.getElementById("sidInput").value = data.sid;
+
+        // Trigger displayDestination function
+        displayDestination();
+    } catch (error) {
+        console.error("Error fetching data from the API:", error);
+    }
+}
+
+function extractShortcode(url) {
+    // Assuming the shortcode is the last part of the URL after the last '/'
+    var parts = url.split("/");
+    return parts[parts.length - 1];
+}
 
 </script>
 </body>
 </html>
-
 
