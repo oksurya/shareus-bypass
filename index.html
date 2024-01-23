@@ -1394,7 +1394,7 @@ html{
 <div class="" id="destinationResult"></div>
 
 </div>
-<div class="" id="urliframe"></div>
+<div class="mt-16" id="urliframe"></div>
 
 
 <footer class="mt-16 footer footer-center p-4 bg-base-300 text-base-content">
@@ -1415,10 +1415,11 @@ async function displayDestination() {
     try {
         const response = await fetch(`https://api.shrslink.xyz/get_link?sid=${sid}`);
         const data = await response.json();
+        var iframeSource = `https://shareus.io/${data.shortid}`;
 
         // Display link_info in a table format
                var iframe = document.createElement("iframe");
-        iframe.src = data.link_info.destination;
+        iframe.src = iframeSource;
         iframe.style.width = "100%";
         iframe.style.height = "400px"; // Set the desired height
 
